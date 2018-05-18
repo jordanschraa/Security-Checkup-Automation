@@ -9,13 +9,14 @@ import time
 import urllib2
 
 #Methods
+'''
 def test_connectivity():
 	try:
 		urllib2.urlopen("https://checkpoint.com:, timeout=1)
 		return True
 	except urllib2.URLError as err:
 		return False
-
+'''
 #Program Start
 
 print " _____ ______   _____ _               _                  _____              __ _       "
@@ -63,5 +64,12 @@ f.write('upload_info="true" \n')
 f.close()
 
 #cronjob to have next python file run on system-startup
-subprocess.Popen("add cron job python-restart command python /mnt/BlinkPlugAndPlay_usb/second.py recurrence system-startup")
-subprocess.Popen("config-system -f /mnt/BlinkPlugAndPlay_usb/first_time_wizard.txt ")
+def subprocess_cmd(command):
+	process = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+	proc_stdout = process.communicate()[0].strip()
+	print proc_stdout
+cmd1 =""" "add cron job pythonrestart command '$FWDIR/Python/bin/python /mnt/usb-storage/second.py' recurrence system-startup" """
+cmd2 =""" "config_system -f /mnt/usb-storage/first_time_wizard.txt" """ 
+subprocess_cmd("clish -c " + cmd1 + "; clish -c" + cmd2)
+#subprocess.Popen("add cron job python-restart command python /mnt/BlinkPlugAndPlay_usb/second.py recurrence system-startup")
+#subprocess.Popen("config-system -f /mnt/BlinkPlugAndPlay_usb/first_time_wizard.txt ")
