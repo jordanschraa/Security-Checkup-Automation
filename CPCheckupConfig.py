@@ -37,7 +37,7 @@ management_IP = raw_input("Enter desired Management IP: ")
 print "Enter desired GAIA password"
 password = getpass.getpass()
 
-license_string = raw_input ("Enter License String (Optional): ")
+license_string = raw_input ("Enter License String (Do not include cplic put): ")
 
 client_IP = raw_input ("Enter desired Client IP(Optional): ")
 if client_IP is "":
@@ -74,7 +74,14 @@ else:
 	print "No Internet Connection. Skipping Updates and License Activation"
 
 #Active License
+subprocess.Popen("cplic put " + license_string)
+#May have to have contract file downloaded and on usb. Then subprocess can be used to call file
 
+#Update Gaia
+for x in range (10)
+	subprocess.Popen("installer download-and-install " + x)
+	time.sleep(5)
+	subprocess.Popen("s")
 
 
 #Smart Console Setup
