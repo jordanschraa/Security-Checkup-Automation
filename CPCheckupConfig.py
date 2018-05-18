@@ -1,6 +1,6 @@
 #Config Utility for Checkpoint Security Checkups
 #Install Gaia
-#Insert USB, Set expert password, enter expert mode and run CPCheckupConfig.py
+#Insert USB, Set expert password, enter expert mode and run CPCheckupConfig.py. Include COntract File
 
 
 #Import Modules
@@ -53,6 +53,8 @@ if dns_IP is "":
 subprocess.Popen("chsh -s /bin/bash admin")
 
 #Run First Time Config Wizard Tasks
+#Will have to set a onetime startup script to start after the reboot
+
 
 #Gaia Setup
 #Run Modify Script
@@ -71,17 +73,26 @@ if test_connectivity():
 	internet = True
 	continue
 else:
-	print "No Internet Connection. Skipping Updates and License Activation"
+	print "No Internet Connection. Updates and License Activation will fail an will have to be done manually"
+	continue
 
 #Active License
 subprocess.Popen("cplic put " + license_string)
 #May have to have contract file downloaded and on usb. Then subprocess can be used to call file
 
-#Update Gaia
+#Update Gaia. Download and update every hotfix available
 for x in range (10)
 	subprocess.Popen("installer download-and-install " + x)
 	time.sleep(5)
 	subprocess.Popen("s")
-
+#
 
 #Smart Console Setup
+
+#Login
+subprocess.Popen("mgmt login")
+time.sleep(2)
+ 
+
+#Get Topology???
+
