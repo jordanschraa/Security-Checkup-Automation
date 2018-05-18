@@ -3,13 +3,20 @@
 #Insert USB, Set expert password, enter expert mode and run CPCheckupConfig.py
 
 
-
-
 #Import Modules
 import getpass
 import subprocess
 import time
+import urllib2
 
+
+#Methods
+def test_connectivity():
+	try:
+		urllib2.urlopen("https://checkpoint.com:, timeout=1)
+		return True
+	except urllib2.URLError as err:
+		return False
 
 #Program Start
 
@@ -56,5 +63,14 @@ time.sleep(5)
 subprocess.Popen("clish")
 subprocess.Popen("add dhcp client interface " + client_interface)
 subprocess.Popen("set interface state on")
+
+#Test Internet Connection
+internet = False
+
+if test_connectivity():
+	internet = True
+	continue
+else:
+	print "No Internet Connection. Skipping Updates and License Activation"
 
 #Smart Console Setup
