@@ -73,4 +73,8 @@ if test_connectivity():
 else:
 	print "No Internet Connection. Skipping Updates and License Activation"
 
+#Active License
+
+
+
 #Smart Console Setup
