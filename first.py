@@ -11,7 +11,7 @@ import urllib2
 #Methods
 def test_connectivity():
 	try:
-		urllib2.urlopen("https://checkpoint.com:, timeout=1)
+		urllib2.urlopen("https://checkpoint.com":, timeout=1)
 		return True
 	except urllib2.URLError as err:
 		return False
