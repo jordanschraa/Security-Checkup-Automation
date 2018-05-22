@@ -1,6 +1,5 @@
 hostname=security_checkup 
 mgmt_admin_name=admin 
-mgmt_admin_passwd=test 
 mgmt_gui_clients_radio=any 
 install_security_managment="true" 
 install_security_gw="true" 
