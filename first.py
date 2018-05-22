@@ -11,7 +11,7 @@ import urllib2
 #Functions
 def test_connectivity():
 	try:
-		urllib2.urlopen("https://checkpoint.com":, timeout=1)
+		urllib2.urlopen("https://checkpoint.com", timeout=1)
 		return True
 	except urllib2.URLError as err:
 		return False
@@ -32,9 +32,6 @@ def get_variables():
 	dns_IP = raw_input ("Enter Desired DNS Server(Optional - Default is 8.8.8.8): ")
 	if dns_IP is "":
 		dns_IP = "8.8.8.8"
-	
-		
-#Program Start
 
 def graphic_art():
 	print " _____ ______   _____ _               _                 "
@@ -46,27 +43,33 @@ def graphic_art():
 	print "                                                | |     "
 	print "                                                |_|     "
 	print "Written by Mike Braun and Jordan Schraa \n\n"
+	
 def subprocess_cmd(command):
 	process = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
 	proc_stdout = process.communicate()[0].strip()
 	p_status = process.wait()
 	print proc_stdout
+	
 def main():
 	debug = True
 	
 	#when debuging just grab password
-	if debug = True:
-		password = getpass.getpass()
+	if debug == True:
+		password = raw_input("Enter password: ")
 		print password
 	else:	
 		graphic_art()
 		get_variables()
 		
 	#include the mandatory options and then only write the options they change
-	f = open('first_time_wizard.txt', "w+")
+	f = open('first_time_wizard.txt', "a")
 	f.write('mgmt_admin_passwd='+password+' \n')
 	f.close()
 
+	#right now it is in dry run mode so it just verfies the file and does not do the first time wizard
 	cmd1 =""" "add cron job pythonrestart command '$FWDIR/Python/bin/python /mnt/usb-storage/second.py' recurrence system-startup" """
-	cmd2 =""" "config_system -f ./first_time_wizard.txt" """ 
+	cmd2 =""" "config_system -f first_time_wizard.txt --dry-run" """ 
 	subprocess_cmd("clish -c " + cmd1 + "; clish -c" + cmd2)
+	
+if __name__ == "__main__":
+	main()
