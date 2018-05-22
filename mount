@@ -1,0 +1,3 @@
+dmesg --> to see what the device name is
+
+mount <device> + <location>

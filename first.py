@@ -19,14 +19,14 @@ def test_connectivity():
 '''
 #Program Start
 
-print " _____ ______   _____ _               _                  _____              __ _       "
-print "/  __ \| ___ \ /  __ \ |             | |                /  __ \            / _(_)      "
-print "| /  \/| |_/ / | /  \/ |__   ___  ___| | ___   _ _ __   | /  \/ ___  _ __ | |_ _  __ _ "
-print "| |    |  __/  | |   | '_ \ / _ \/ __| |/ / | | | '_ \  | |    / _ \| '_ \|  _| |/ _` |"
-print "| \__/\| |     | \__/\ | | |  __/ (__|   <| |_| | |_) | | \__/\ (_) | | | | | | | (_| |"
-print " \____/\_|      \____/_| |_|\___|\___|_|\_\\__,_| .__/   \____/\___/|_| |_|_| |_|\__, |"
-print "                                                | |                               __/ |"
-print "                                                |_|                              |___/ "
+print " _____ ______   _____ _               _                 "
+print "/  __ \| ___ \ /  __ \ |             | |                "
+print "| /  \/| |_/ / | /  \/ |__   ___  ___| | ___   _ _ __   "
+print "| |    |  __/  | |   | '_ \ / _ \/ __| |/ / | | | '_ \  "
+print "| \__/\| |     | \__/\ | | |  __/ (__|   <| |_| | |_) | "
+print " \____/\_|      \____/_| |_|\___|\___|_|\_\\__,_| .__/  "
+print "                                                | |     "
+print "                                                |_|     "
 print "Written by Mike Braun and Jordan Schraa \n\n"
 
 #Get Variables
@@ -68,7 +68,8 @@ f.close()
 def subprocess_cmd(command):
 	process = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
 	proc_stdout = process.communicate()[0].strip()
+	p_status = process.wait()
 	print proc_stdout
 cmd1 =""" "add cron job pythonrestart command '$FWDIR/Python/bin/python /mnt/usb-storage/second.py' recurrence system-startup" """
-cmd2 =""" "config_system -f /mnt/usb-storage/first_time_wizard.txt" """ 
+cmd2 =""" "config_system -f ./first_time_wizard.txt" """ 
 subprocess_cmd("clish -c " + cmd1 + "; clish -c" + cmd2)
