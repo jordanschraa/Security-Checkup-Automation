@@ -1,10 +1,11 @@
 hostname=security_checkup 
-mgmt_admin_name=admin 
-mgmt_admin_passwd=test 
+mgmt_admin_name="admin"
 mgmt_gui_clients_radio=any 
 install_security_managment="true" 
 install_security_gw="true" 
 install_mgmt_primary="true" 
 install_mgmt_secondary="false" 
 download_info="true" 
-upload_info="true" 
+upload_info="true"  
+mgmt_admin_passwd=vpn123 
+mgmt_admin_passwd=vpn123 
