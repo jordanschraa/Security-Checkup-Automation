@@ -59,7 +59,7 @@ if dns_IP is "":
 
 #create string for config_system
 
-config_string = """ "hostname=security_checkup&ipaddr_v4="+management_IP+"&masklen_v4=24&primary="+dns_IP+"&mgmt_admin_passwd="+password+"&timezone='America/Edmonton'&install_security_gw=true&gateway_daip=false&install_ppak=true&gateway_cluster_member=false&install_security_managment=true&mgmt_admin_name=admin" """
+config_string = """ "hostname=security_checkup&ipaddr_v4="+management_IP+"&masklen_v4=24&primary="+dns_IP+"&mgmt_admin_passwd="+password+"&timezone='America/Edmonton'&install_security_gw=true&gateway_daip=false&install_ppak=true&install_security_management=true&gateway_cluster_member=false&install_security_managment=true&mgmt_admin_name=adminIP&mgmt_gui_clients_radio=any" """
 
 
 #cronjob to have next python file run on system-startup
@@ -69,4 +69,5 @@ cmd1 =""" "add cron job pythonrestart command '$FWDIR/Python/bin/python /mnt/usb
 cmd2 =""" "config_system -s """ + config_string + """ " """
 
 #run commands
-subprocess_cmd("clish -c " + cmd1 + "; clish -c" + cmd2)
+subprocess_cmd("clish -c " + cmd1) 
+subprocess_cmd(cmd2)
