@@ -73,12 +73,20 @@ rc.send("\n")
 time.sleep(2)
 
 #Upload Modify Script
+rc.send("expert")
+rc.send("\n")
+time.sleep(2)
+rc.send(password)
+rc.send("\n")
+time.sleep(2)
 scpclient = SCPClient(ssh.get_transport(), socket_timeout=15.0)
 scpclient.put(mfilepath, "/home/admin")
 
 #Run Modify Script
 rc.send("chmod +x /home/admin/modifyScript.sh")
+rc.send("\n")
 rc.send("/home/admin/modifyScript.sh")
+rc.send("\n")
 time.sleep(5)
 
 #Change Shell to CLISH
@@ -149,3 +157,14 @@ for x in range (10):
 rc.send("mgmt login")
 time.sleep(2)
 '''
+
+rc.send('expert')
+rc.send('\n')
+time.sleep(2)
+rc.send(password)
+rc.send("\n")
+time.sleep(2)
+rc.send('reboot')
+rc.send('\n')
+rc.send('y')
+rc.send('\n')
