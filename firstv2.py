@@ -59,15 +59,22 @@ if dns_IP is "":
 
 #create string for config_system
 
-config_string = """ "hostname=security_checkup&ipaddr_v4="+management_IP+"&masklen_v4=24&primary="+dns_IP+"&mgmt_admin_passwd="+password+"&timezone='America/Edmonton'&install_security_gw=true&gateway_daip=false&install_ppak=true&install_security_management=true&gateway_cluster_member=false&install_security_managment=true&mgmt_admin_name=adminIP&mgmt_gui_clients_radio=any" """
+config_string = """ "hostname=security_checkup&ipaddr_v4="""+management_IP+"""&masklen_v4=24&primary="""+dns_IP+"""&mgmt_admin_passwd="""+password+"""&timezone='America/Edmonton'&install_security_gw=true&gateway_daip=false&install_ppak=true&install_security_management=true&gateway_cluster_member=false&install_security_managment=true&mgmt_admin_name=adminIP&mgmt_gui_clients_radio=any" """
 
 
 #cronjob to have next python file run on system-startup
-cmd1 =""" "add cron job pythonrestart command '$FWDIR/Python/bin/python /mnt/usb-storage/second.py' recurrence system-startup" """
+cmd_1a =""" "add cron job pythonrestart command '$FWDIR/Python/bin/python /mnt/usb-storage/second.py' recurrence system-startup" """
 
 #config wizard
-cmd2 =""" "config_system -s """ + config_string + """ " """
+cmd_2a =""" "config_system -s """ + config_string + """ " """
+
+cmd_1b = 'clish -c ' + cmd_1a
+cmd_2b = 'clish -c ' + cmd_2a
+
+print cmd_2b
 
 #run commands
-subprocess_cmd("clish -c " + cmd1) 
-subprocess_cmd(cmd2)
+subprocess_cmd('clish -c "lock database override" & ' + cmd_1b) 
+time.sleep(7)
+subprocess_cmd('clish -c "lock database override" & ' + cmd_2b)
+time.sleep(15)
