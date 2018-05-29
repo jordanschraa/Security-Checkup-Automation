@@ -79,6 +79,8 @@ time.sleep(2)
 rc.send(password)
 rc.send("\n")
 time.sleep(2)
+rc.send('clish -c "lock database override"')
+rc.send("\n")
 scpclient = SCPClient(ssh.get_transport(), socket_timeout=15.0)
 scpclient.put(mfilepath, "/home/admin")
 
@@ -143,7 +145,6 @@ results = rc.recv(4000)
 print results
 
 '''
-
 #Update Gaia. Download and update every hotfix available
 
 for x in range (10):
