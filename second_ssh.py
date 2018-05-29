@@ -69,7 +69,7 @@ rc.send("\n")
 time.sleep(2)
 rc.send("chsh -s /bin/bash")
 rc.send("\n")
-time.sleep(2)
+time.sleep(5)
 
 #Upload Modify Script
 rc.send("expert")
@@ -146,7 +146,6 @@ results = rc.recv(4000)
 print results
 
 
-
 '''
 #Update Gaia. Download and update every hotfix available
 
@@ -156,15 +155,16 @@ for x in range (10):
 	rc.send('s')
 '''
 
-'''
+
 #Smart Console Setup
 
 #Login
-rc.send("mgmt login")
-time.sleep(2)
+rc.send("mgmt login user " + username)
+rc.send("\n")
+time.sleep(1)
+rc.send(password)
+time.sleep(1)
 
-
-'''
 
 #Reboot
 rc.send('expert')
