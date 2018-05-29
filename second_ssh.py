@@ -190,7 +190,7 @@ rc.send("\n")
 time.sleep(2)
 rc.send('mgmt_cli install-policy policy-package "security_checkup"')
 rc.send("\n")
-time.sleep(2)
+time.sleep(200)
 
 #Reboot
 rc.send('expert')
