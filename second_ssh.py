@@ -51,7 +51,6 @@ rc.send("lock database override")
 rc.send("\n")
 rc.send("set expert-password")
 rc.send("\n")
-result = rc.recv(1024)
 rc.send("\n")
 time.sleep(2)
 rc.send(password)
@@ -59,7 +58,7 @@ rc.send("\n")
 time.sleep(2)
 rc.send(password)
 rc.send("\n")
-time.sleep(2)
+time.sleep(7)
 
 #Change Default Shell
 rc.send("expert")
@@ -87,7 +86,7 @@ scpclient.put(mfilepath, "/home/admin")
 rc = ssh.invoke_shell()
 
 #Run Modify Script
-rc.send("chmod +x /home/admin/modifyScript.sh")
+rc.send("chmod 777 /home/admin/modifyScript.sh")
 rc.send("\n")
 rc.send("/home/admin/modifyScript.sh")
 rc.send("\n")
@@ -146,6 +145,8 @@ time.sleep(2)
 results = rc.recv(4000)
 print results
 
+
+
 '''
 #Update Gaia. Download and update every hotfix available
 
@@ -153,14 +154,19 @@ for x in range (10):
 	rc.send('installer download-and-install ' + str(x))
 	time.sleep(5)
 	rc.send('s')
+'''
 
+'''
 #Smart Console Setup
 
 #Login
 rc.send("mgmt login")
 time.sleep(2)
+
+
 '''
 
+#Reboot
 rc.send('expert')
 rc.send('\n')
 time.sleep(2)
