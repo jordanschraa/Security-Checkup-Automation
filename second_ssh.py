@@ -165,6 +165,32 @@ time.sleep(1)
 rc.send(password)
 time.sleep(1)
 
+#Create Rules
+rc.send("clish")
+rc.send("\n")
+rc.send("lock database override")
+rc.send("\n")
+rc.send('mgmt_cli add package name "security_checkup" threat-prevention "false"')
+rc.send("\n")
+time.sleep(2)
+rc.send('mgmt_cli add access-layer name "FW_Layer"  firewall "true" add-default-rule "false" shared "true"')
+rc.send("\n")
+time.sleep(2)
+rc.send('mgmt_cli set package name "security_checkup" access-layers.add.1.name "FW_Layer" access-layers.add.1.position 1')
+rc.send("\n")
+time.sleep(2)
+rc.send('mgmt_cli add access-rule layer "FW_Layer" source "any" destination "any" service "any" action "accept" position "1" name "Accept All"')
+rc.send("\n")
+time.sleep(2)
+
+
+#Publish Rules
+rc.send('mgmt_cli publish')
+rc.send("\n")
+time.sleep(2)
+rc.send('mgmt_cli install-policy policy-package "security_checkup"')
+rc.send("\n")
+time.sleep(2)
 
 #Reboot
 rc.send('expert')
